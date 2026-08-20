@@ -19,10 +19,3 @@ jobs:
         with:
           name: rendered-video
           path: out/video.mp4
-      - name: Upload to R2
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: |
-          pip install awscli
-          aws s3 cp out/video.mp4 s3://econotalk-videos/video-${{ github.run_number }}.mp4 --endpoint-url https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
